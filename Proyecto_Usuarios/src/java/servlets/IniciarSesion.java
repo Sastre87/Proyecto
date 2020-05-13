@@ -53,6 +53,7 @@ public class IniciarSesion extends HttpServlet {
                 Usuario u = usuEJB.findEmpleadoByDni(dni);
                 if(u.getPassword().equals(password)){
                     
+                
                         out.println("<h1>Bienvenido " + u.getNombre() + "</h1>");
                         out.println("<form action=\"Menu_usuario.html\" method=\"POST\">"
                             + "Ir al menú del usuario."

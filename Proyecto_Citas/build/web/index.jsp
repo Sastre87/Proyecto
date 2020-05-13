@@ -11,7 +11,7 @@
         <h1>CONECTAR</h1>
         <form action="IniciarSesion" method="POST">
             <p>Introduzca su DNI: <input type="text" name="dni"></p>
-            <p>Introduzca su password: <input type="text" name="password"></p>
+            <p>Introduzca su password: <input type="password" name="password"></p>
             <input type="submit" value="modificar">
         </form>
     </body>
