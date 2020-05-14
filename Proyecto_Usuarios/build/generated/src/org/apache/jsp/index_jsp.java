@@ -54,7 +54,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        ");
 
           //Valor por defecto
-         String dniUsu="Pepe";
+         String dniUsu=" ";
          // Lee la Cookie
          Cookie[] lasCookies=request.getCookies();
          //Buscar Cookie
