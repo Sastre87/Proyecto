@@ -13,6 +13,7 @@ import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,6 +50,15 @@ public class IniciarSesion extends HttpServlet {
             String dni = request.getParameter("dni");
             String password = request.getParameter("password");
             Usuario usu = new Usuario(dni);
+            
+          String dniUsuario=request.getParameter("dni");
+          //Creo Cookie
+          Cookie laCookie=new Cookie("usuario.login",dniUsuario);
+          // Tiempo de la Cookie(1 año)
+          laCookie.setMaxAge(365*24*60/60);
+          // Graba en el ordenador usuario
+          response.addCookie(laCookie);
+          
             if(usuEJB.existeUsuario(usu)){
                 Usuario u = usuEJB.findEmpleadoByDni(dni);
                 if(u.getPassword().equals(password)){

@@ -51,9 +51,30 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title>INICIO DE SESIÓN</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("        ");
+
+          //Valor por defecto
+         String dniUsu="Pepe";
+         // Lee la Cookie
+         Cookie[] lasCookies=request.getCookies();
+         //Buscar Cookie
+         if(lasCookies!=null){
+             
+             for (Cookie cookie_temp: lasCookies){
+                 if("usuario.login".equals(cookie_temp.getName()))
+                 dniUsu=cookie_temp.getValue();
+                 break;
+             }
+             
+         }
+        
+        
+      out.write("\n");
       out.write("        <h1>CONECTAR</h1>\n");
       out.write("        <form action=\"IniciarSesion\" method=\"POST\">\n");
-      out.write("            <p>Introduzca su DNI: <input type=\"text\" name=\"dni\"></p>\n");
+      out.write("            <p>Introduzca su DNI: <input type=\"text\" name=\"dni\" value=");
+      out.print( dniUsu );
+      out.write("></p>\n");
       out.write("            <p>Introduzca su password: <input type=\"password\" name=\"password\"></p>\n");
       out.write("            <p>\n");
       out.write("            <a href='RegistrarUsuario.jsp'>\n");
@@ -62,6 +83,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        </p>\n");
       out.write("            <input type=\"submit\" value=\"Aceptar\">\n");
       out.write("        </form>\n");
+      out.write("    \n");
+      out.write("        \n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

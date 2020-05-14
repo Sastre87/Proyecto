@@ -10,6 +10,8 @@ import entidades_POJO.Citas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -37,8 +39,21 @@ llamadaEJB llamaEJB;
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       response.setIntHeader("refresh", 1);
        response.setContentType("text/html;charset=UTF-8");
        try (PrintWriter out = response.getWriter()) {
+           Calendar cal= new GregorianCalendar();
+           String noon;
+           int hour=cal.get(Calendar.HOUR);
+           int minute = cal.get(Calendar.MINUTE);
+           int second=cal.get(Calendar.SECOND);
+           if(cal.get(Calendar.AM_PM)==0){
+               noon="AM";
+           }
+           else{
+               noon="PM";
+           }
+           String ct=hour+":"+minute+":"+second+" "+noon;
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -47,6 +62,7 @@ llamadaEJB llamaEJB;
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Turnos</h1>");
+              out.println("<h2>Hora: "+ct+"</h2>");
             out.println("<h3>Compruebe su código y acerquese a la mesa correspondiente</h3>");
            List<Citas> c=new ArrayList<Citas>();
            c=llamaEJB.DameCitas();
