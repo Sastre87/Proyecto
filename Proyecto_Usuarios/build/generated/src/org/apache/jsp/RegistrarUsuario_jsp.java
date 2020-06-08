@@ -71,10 +71,6 @@ public final class RegistrarUsuario_jsp extends org.apache.jasper.runtime.HttpJs
       out.write("      <td><label for=\"password\">Contraseña: </label></td>\n");
       out.write("      <td><input type=\"password\" name=\"password\" id=\"password\"></td>\n");
       out.write("    </tr>\n");
-      out.write("     <tr>\n");
-      out.write("      <td><label for=\"repetir\">Repetir contraseña: </label></td>\n");
-      out.write("      <td><input type=\"repetir\" name=\"repetir\" id=\"repetir\"></td>\n");
-      out.write("    </tr>\n");
       out.write("   <tr>\n");
       out.write("      <td colspan=\"2\" align=\"center\"><input type=\"submit\" name=\"button\" id=\"button\" value=\"Enviar\"></td>\n");
       out.write("    </tr>\n");

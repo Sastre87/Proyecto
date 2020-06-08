@@ -60,36 +60,46 @@ public class IniciarSesion extends HttpServlet {
           response.addCookie(laCookie);
           
             if(usuEJB.existeUsuario(usu)){
-                Usuario u = usuEJB.findEmpleadoByDni(dni);
+                Usuario u = usuEJB.findUsuarioByDni(dni);
                 if(u.getPassword().equals(password)){
                     
-                
-                        out.println("<h1>Bienvenido " + u.getNombre() + "</h1>");
+                       if(!usuEJB.existeCita()){
+                            out.println("<h1>Bienvenido " + u.getNombre() + "</h1>");
                         out.println("<form action=\"Menu_usuario.html\" method=\"POST\">"
                             + "Ir al menú del usuario."
                             + "<input type=\"submit\" name=\"ir\" value=\"Ir\" />"
                             + "</form>");
                     
-                }
+                    
+                 }
+       
                  else{
-                    
-                    out.println("<form action=\"index.jsp\" method=\"POST\">"
-                            + "Usuario o contraseña son incorrectos <br><br>"                     
-                            + "<input type=\"submit\" name=\"Volver\" value=\"Volver\" />"
+                     out.println("<h1>Bienvenido " + u.getNombre() + "</h1>");
+                        out.println("<form action=\"verCita.html\" method=\"POST\">"
+                            + "Usted ya tiene una cita. <br>"
+                            + "<input type=\"submit\" name=\"VerCita\" value=\"VerCita\" />"
                             + "</form>");
-                    
+              
+                       }
                 }
-            }
+            
              else{
-                    
-                    out.println("<form action=\"index.jsp\" method=\"POST\">"
+                          out.println("<form action=\"index.jsp\" method=\"POST\">"
                             + "Usuario o contraseña son incorrectos <br><br>"                     
                             + "<input type=\"submit\" name=\"Volver\" value=\"Volver\" />"
                             + "</form>");
+                  
                     
+             
+                     }     
+           
                 }
-            
-            
+            else{
+                      out.println("<form action=\"index.jsp\" method=\"POST\">"
+                            + "Usuario o contraseña son incorrectos <br><br>"                     
+                            + "<input type=\"submit\" name=\"Volver\" value=\"Volver\" />"
+                            + "</form>");
+                    }
             out.println("</body>");
             out.println("</html>");
         }

@@ -38,8 +38,19 @@ public class UsuarioEJB {
         em.close();
         return encontrada != null;
     }
+       public boolean existeCita() {
+       EntityManager em = emf.createEntityManager();
+       Query q = em.createQuery("SELECT c FROM Citas c WHERE c.dniUsuario = :dniUsuario");
+        q.setParameter("dniUsuario", usu);
+        List<Citas> result = q.getResultList();
+        em.close();
+        if (result.isEmpty()){
+            return false;
+        }
+        return true;
+    }
     
-    public Usuario findEmpleadoByDni (String dni){
+    public Usuario findUsuarioByDni (String dni){
         Query q = emf.createEntityManager().createNamedQuery("Usuario.findByDni");
         q.setParameter("dni", dni);
         List<Usuario> result = q.getResultList();
