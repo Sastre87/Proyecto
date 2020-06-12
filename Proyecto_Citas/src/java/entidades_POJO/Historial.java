@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author jluis
+ * @author Eric
  */
 @Entity
 @Table(name = "historial")
@@ -60,9 +60,6 @@ public class Historial implements Serializable {
     @NotNull
     @Column(name = "realizado")
     private boolean realizado;
-    @JoinColumn(name = "cod_cita", referencedColumnName = "codigo_cita")
-    @ManyToOne(optional = false)
-    private Citas codCita;
     @JoinColumn(name = "dni_empleado", referencedColumnName = "dni")
     @ManyToOne(optional = false)
     private Empleado dniEmpleado;
@@ -126,14 +123,6 @@ public class Historial implements Serializable {
 
     public void setRealizado(boolean realizado) {
         this.realizado = realizado;
-    }
-
-    public Citas getCodCita() {
-        return codCita;
-    }
-
-    public void setCodCita(Citas codCita) {
-        this.codCita = codCita;
     }
 
     public Empleado getDniEmpleado() {

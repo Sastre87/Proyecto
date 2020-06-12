@@ -6,9 +6,7 @@
 package entidades_POJO;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -16,16 +14,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author jluis
+ * @author Eric
  */
 @Entity
 @Table(name = "citas")
@@ -65,8 +61,10 @@ public class Citas implements Serializable {
     @JoinColumn(name = "dni_usuario", referencedColumnName = "dni")
     @ManyToOne(optional = false)
     private Usuario dniUsuario;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "codCita")
-    private Collection<Historial> historialCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "orden")
+    private int orden;
 
     public Citas() {
     }
@@ -75,11 +73,12 @@ public class Citas implements Serializable {
         this.codigoCita = codigoCita;
     }
 
-    public Citas(String codigoCita, String fecha, String hora, boolean llamado) {
+    public Citas(String codigoCita, String fecha, String hora, boolean llamado, int orden) {
         this.codigoCita = codigoCita;
         this.fecha = fecha;
         this.hora = hora;
         this.llamado = llamado;
+        this.orden = orden;
     }
 
     public String getCodigoCita() {
@@ -130,13 +129,12 @@ public class Citas implements Serializable {
         this.dniUsuario = dniUsuario;
     }
 
-    @XmlTransient
-    public Collection<Historial> getHistorialCollection() {
-        return historialCollection;
+    public int getOrden() {
+        return orden;
     }
 
-    public void setHistorialCollection(Collection<Historial> historialCollection) {
-        this.historialCollection = historialCollection;
+    public void setOrden(int orden) {
+        this.orden = orden;
     }
 
     @Override

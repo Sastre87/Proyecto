@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author jluis
+ * @author Eric
  */
 @Entity
 @Table(name = "tramite_altas")
@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "TramiteAltas.findByIdAlta", query = "SELECT t FROM TramiteAltas t WHERE t.idAlta = :idAlta")
     , @NamedQuery(name = "TramiteAltas.findByFechaAlta", query = "SELECT t FROM TramiteAltas t WHERE t.fechaAlta = :fechaAlta")
     , @NamedQuery(name = "TramiteAltas.findByTipoPlan", query = "SELECT t FROM TramiteAltas t WHERE t.tipoPlan = :tipoPlan")
-    , @NamedQuery(name = "TramiteAltas.findByPrecio", query = "SELECT t FROM TramiteAltas t WHERE t.precio = :precio")})
+    , @NamedQuery(name = "TramiteAltas.findByPrecio", query = "SELECT t FROM TramiteAltas t WHERE t.precio = :precio")
+    , @NamedQuery(name = "TramiteAltas.findByCorrientePago", query = "SELECT t FROM TramiteAltas t WHERE t.corrientePago = :corrientePago")})
 public class TramiteAltas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -54,6 +55,8 @@ public class TramiteAltas implements Serializable {
     @NotNull
     @Column(name = "precio")
     private int precio;
+    @Column(name = "corriente_pago")
+    private Boolean corrientePago;
     @JoinColumn(name = "dni_empleado", referencedColumnName = "dni")
     @ManyToOne(optional = false)
     private Empleado dniEmpleado;
@@ -110,6 +113,14 @@ public class TramiteAltas implements Serializable {
         this.precio = precio;
     }
 
+    public Boolean getCorrientePago() {
+        return corrientePago;
+    }
+
+    public void setCorrientePago(Boolean corrientePago) {
+        this.corrientePago = corrientePago;
+    }
+
     public Empleado getDniEmpleado() {
         return dniEmpleado;
     }
@@ -156,7 +167,16 @@ public class TramiteAltas implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades_POJO.TramiteAltas[ idAlta=" + idAlta + " ]";
+        String corr;
+        if(corrientePago){
+            corr = "SÍ";
+        }else{
+            corr = "NO";
+        }
+        return "id:  " + idAlta + "   Usuario:  " + dniUsuario.getNombre() + " " + dniUsuario.getApellidos()
+                + "   Empleado:  " + dniEmpleado.getNombre() + " " + dniEmpleado.getApellidos() + "   Plan:  "
+                + tipoPlan + "   Subscripción:  " + precio + "€   Fecha de alta:  " + fechaAlta + "   Corriente"
+                + " de pago:  " + corr;
     }
     
 }

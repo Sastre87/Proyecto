@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author jluis
+ * @author Eric
  */
 @Entity
 @Table(name = "usuario")
@@ -230,7 +230,10 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades_POJO.Usuario[ dni=" + dni + " ]";
+        return "Nombre:  " + nombre + "   Apellidos:  " + apellidos + "   DNI:  " + dni
+                + "   Password:   " + password + "   Fecha de nacimiento:  " + fechaNacimiento
+                + "   Dirección:  " + direccion + "   Cuenta bancaria:  " + cuentaBancaria
+                + "   Estado:  " + estado;
     }
     
 }

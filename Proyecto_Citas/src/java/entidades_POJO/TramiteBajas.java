@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author jluis
+ * @author Eric
  */
 @Entity
 @Table(name = "tramite_bajas")
@@ -156,7 +156,15 @@ public class TramiteBajas implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades_POJO.TramiteBajas[ idBaja=" + idBaja + " ]";
+        String corr;
+        if(corrientePago){
+            corr = "SÍ";
+        }else{
+            corr = "NO";
+        }
+        return "id:  " + idBaja + "   Usuario:  " + dniUsuario.getNombre() + " " + dniUsuario.getApellidos()
+                + "   Empleado:  " + dniEmpleado.getNombre() + " " + dniEmpleado.getApellidos() + "   Motivo/s:  "
+                + motivo + "   Fecha de baja:  " + fechaBaja + "   Corriente de pago:  " + corr;
     }
     
 }

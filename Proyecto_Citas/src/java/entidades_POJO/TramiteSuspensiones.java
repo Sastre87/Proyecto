@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author jluis
+ * @author Eric
  */
 @Entity
 @Table(name = "tramite_suspensiones")
@@ -171,7 +171,16 @@ public class TramiteSuspensiones implements Serializable {
 
     @Override
     public String toString() {
-        return "entidades_POJO.TramiteSuspensiones[ idSuspension=" + idSuspension + " ]";
+        String corr;
+        if(corrientePago){
+            corr = "SÍ";
+        }else{
+            corr = "NO";
+        }
+        return "id:  " + idSuspension + "   Usuario:  " + dniUsuario.getNombre() + " " + dniUsuario.getApellidos()
+                + "   Empleado:  " + dniEmpleado.getNombre() + " " + dniEmpleado.getApellidos() + "   Motivo:  "
+                + motivoSus + "   Fecha del inicio de la suspensión:  " + fechaIniSus + "   Fecha del fin de la"
+                + " suspensión:  " + fechaFinSus + "   Corriente de pago:  " + corr;
     }
     
 }

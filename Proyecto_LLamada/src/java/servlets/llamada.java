@@ -39,7 +39,7 @@ llamadaEJB llamaEJB;
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setIntHeader("refresh", 1);
+      response.setIntHeader("refresh", 1);
        response.setContentType("text/html;charset=UTF-8");
        try (PrintWriter out = response.getWriter()) {
            Calendar cal= new GregorianCalendar();
@@ -56,22 +56,30 @@ llamadaEJB llamaEJB;
            String ct=hour+":"+minute+":"+second+" "+noon;
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
-            out.println("<html>");
+            out.println("<html class='main'>");
             out.println("<head>");
-            out.println("<title>Servlet Formulario</title>");            
+            out.println("<title>Servlet Formulario</title>");
+            out.println("<link rel='stylesheet' type='text/css' href='resource/index.css'/></link>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Turnos</h1>");
-              out.println("<h2>Hora: "+ct+"</h2>");
-            out.println("<h3>Compruebe su código y acerquese a la mesa correspondiente</h3>");
-           List<Citas> c=new ArrayList<Citas>();
-           c=llamaEJB.DameCitas();
-           for (int i=0; i<c.size();i++){
-               
-                out.println("<h4>Código: "+c.get(i).getCodigoCita()+"-------Mesa: "+c.get(i).getTipoTramite().getId()+"</h4>");
-               
-           }
-           
+            out.println("<div class='center'>"
+                + "<h1>Turnos</h1>"
+                + "<h2>Hora: "+ct+"</h2>"
+                + "<h3>Compruebe su código y acerquese a la mesa correspondiente</h3>"
+                + "<table cellspacing='20' class='tabla'>"
+                    + "<thead>"
+                        + "<th> Código </th>"
+                        + "<th> Mesa </th>"
+                    + "</thead>"
+                    + "<tbody>");
+            List<Citas> c=new ArrayList<Citas>();
+            c=llamaEJB.DameCitas();
+                        for (int i=0; i<c.size();i++){
+                            out.println("<tr><td class='center'>"+c.get(i).getCodigoCita()+"</td><td class='center'>"+c.get(i).getTipoTramite().getId()+"</td></tr>");    
+                        }
+                    out.println("</tbody>"
+                + "</table>"
+            + "</div>");
             out.println("</body>");
             out.println("</html>");
         }

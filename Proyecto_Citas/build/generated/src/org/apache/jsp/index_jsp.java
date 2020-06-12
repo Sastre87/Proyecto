@@ -45,18 +45,21 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
+      out.write("<html class=\"main\">\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
+      out.write("        <link rel='stylesheet' type='text/css' href='resource/index.css'/>\n");
       out.write("        <title>INICIO DE SESIÓN</title>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("        <h1>CONECTAR</h1>\n");
-      out.write("        <form action=\"IniciarSesion\" method=\"POST\">\n");
-      out.write("            <p>Introduzca su DNI: <input type=\"text\" name=\"dni\"></p>\n");
-      out.write("            <p>Introduzca su password: <input type=\"text\" name=\"password\"></p>\n");
-      out.write("            <input type=\"submit\" value=\"modificar\">\n");
-      out.write("        </form>\n");
+      out.write("        <div class=\"center\">\n");
+      out.write("            <h1>CONECTAR</h1>\n");
+      out.write("            <form action=\"IniciarSesion\" method=\"POST\">\n");
+      out.write("                <p>Introduzca su DNI: <input type=\"text\" name=\"dni\" required></p>\n");
+      out.write("                <p>Introduzca su password: <input type=\"password\" name=\"password\" required></p>            \n");
+      out.write("                <input type=\"submit\" value=\"Iniciar\">\n");
+      out.write("            </form>\n");
+      out.write("        </div>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

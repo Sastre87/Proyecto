@@ -7,7 +7,7 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-05-12T10:43:20")
+@Generated(value="EclipseLink-2.5.2.v20140319-rNA", date="2020-06-12T10:22:00")
 @StaticMetamodel(TramiteAltas.class)
 public class TramiteAltas_ { 
 
@@ -15,6 +15,7 @@ public class TramiteAltas_ {
     public static volatile SingularAttribute<TramiteAltas, String> fechaAlta;
     public static volatile SingularAttribute<TramiteAltas, Empleado> dniEmpleado;
     public static volatile SingularAttribute<TramiteAltas, String> tipoPlan;
+    public static volatile SingularAttribute<TramiteAltas, Boolean> corrientePago;
     public static volatile SingularAttribute<TramiteAltas, Tramites> tipoTramite;
     public static volatile SingularAttribute<TramiteAltas, Integer> idAlta;
     public static volatile SingularAttribute<TramiteAltas, Usuario> dniUsuario;

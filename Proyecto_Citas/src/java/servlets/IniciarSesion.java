@@ -40,34 +40,41 @@ public class IniciarSesion extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
-            out.println("<html>");
+            out.println("<html class='main'>");
             out.println("<head>");
-            out.println("<title>Servlet IniciarSesion</title>");            
+            out.println("<link rel='stylesheet' type='text/css' href='resource/index.css'/>");
+            out.println("<title>Inicio de sesión</title>");            
             out.println("</head>");
             out.println("<body>");
+            out.println("<div class='center'>");
             String dni = request.getParameter("dni");
             String password = request.getParameter("password");
             Empleado empl = new Empleado(dni);
             if(conEJB.existeEmpleado(empl)){
                 Empleado e = conEJB.findEmpleadoByDni(dni);
-                if(e.getDni().equals(dni)){
+                ConexionEJB.empleado = e;
+                if(e.getPassword().equals(password)){
                     if(e.getTipoTramite() == 4){
-                        out.println("<h1>Bienvenido " + e.getNombre() + "</h1>");
+                        out.println("<h1>Bienvenid@ " + e.getNombre() + "</h1>");
                         out.println("<form action=\"Menu_supervisor.html\" method=\"POST\">"
                             + "Ir al menú de supervisión."
-                            + "<input type=\"submit\" name=\"ir\" value=\"Ir\" />"
+                            + "<p><input type=\"submit\" name=\"ir\" value=\"Menú\" />"
                             + "</form>");
                     }else{
-                        out.println("<h1>Bienvenido " + e.getNombre() + "</h1>");
+                        out.println("<h1>Bienvenid@ " + e.getNombre() + "</h1>");
                         out.println("<form action=\"Menu_empleado.html\" method=\"POST\">"
                             + "Ir al menú del empleado."
-                            + "<input type=\"submit\" name=\"ir\" value=\"Ir\" />"
+                            + "<p><input type=\"submit\" name=\"ir\" value=\"Menú\" />"
                             + "</form>");
                     }
+                }else{
+                    out.println("<h1>Contraseña errónea</h1>");
+                    out.println("<form action=\"index.jsp\" method=\"POST\">"
+                        + "<input type=\"submit\" name=\"reintentar\" value=\"Reintentar\" />"
+                        + "</form>");
                 }
             }
-            
-            
+            out.println("</div>");
             out.println("</body>");
             out.println("</html>");
         }
